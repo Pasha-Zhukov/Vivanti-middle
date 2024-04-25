@@ -5,7 +5,7 @@ To run this project, follow these steps:
 ```bash
 git clone https://github.com/Pasha-Zhukov/Vivanti-middle-.git
 
-cd Vivanti-middle
+cd Vivanti-middle-
 
 npm install
 
