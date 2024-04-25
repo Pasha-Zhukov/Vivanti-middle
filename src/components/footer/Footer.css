@@ -1,0 +1,34 @@
+.footer {
+  background-color: #0d446c;
+  color: #fff;
+}
+
+.phone::before {
+  content: "";
+  display: inline-block;
+  background-image: url("../../../public/images/phone-img.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+
+.location::before {
+  content: "";
+  display: inline-block;
+  background-image: url("../../../public/images/location-img.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  margin-bottom: -3px;
+}
+.copyright {
+  margin-top: 88px;
+  margin-bottom: 0;
+}

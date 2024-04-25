@@ -1,0 +1,40 @@
+.bg-methodology-table-header {
+  background-color: #0d446c !important;
+  color: white !important;
+}
+
+.border-table-body {
+  border: 2px solid #0d446c;
+}
+
+.border-table-header {
+  border-right: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+.low-risk {
+  background: #dbdef8 !important;
+}
+.slightly-raised {
+  background: #c5caee !important;
+}
+.moderate {
+  background: #9ba4e6 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+.high {
+  background: #7e88d2 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+.very-high {
+  background: #6c76bc !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+}
+.text-circle {
+  color: #6c76bc;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
