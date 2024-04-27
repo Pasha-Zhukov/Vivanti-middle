@@ -8,7 +8,6 @@
   justify-content: center;
   min-width: 20.5rem;
   height: 3.25rem;
-  font-family: Arial;
   font-size: 1.63rem;
   font-weight: 700;
   line-height: 2.25rem;
@@ -130,4 +129,15 @@
 
 .inactive {
   background: #f7d4ca;
+}
+
+@media (max-width: 992px) {
+  .btn-next,
+  .btn-back,
+  .btn-again,
+  .btn-start,
+  .result-img {
+    min-height: 3.25rem;
+    min-width: 12.5rem;
+  }
 }

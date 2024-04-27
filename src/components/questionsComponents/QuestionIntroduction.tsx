@@ -1,26 +1,15 @@
-import React from "react";
 import Buttons from "../buttons/Buttons";
+import { QuestionIntroductionProps } from "./Question.types";
 
-interface QuestionIntroductionProps {
-  question: {
-    questionText: string;
-  };
-  currentQuestionIndex: number;
-  handleStart: () => void;
-}
-
-const QuestionIntroduction: React.FC<QuestionIntroductionProps> = ({
-  question,
+export default function QuestionIntroduction({
   currentQuestionIndex,
   handleStart,
-}) => {
+}: QuestionIntroductionProps) {
   return (
-    <div className="bg-questions p-3">
-      <div className="d-flex gap-3">
-        <div>
-          <h5>{question.questionText}</h5>
-
-          <p className="fs-5 fw-normal ">
+    <div className="bg-questions p-3 h-100 ">
+      <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-lg-3">
+        <div className="d-flex flex-column justify-content-between">
+          <p className="fs-5 fw-normal fs-16 m-0 ">
             Своевременная диагностика нарушений углеводного обмена крайне важна
             для подбора корректной АГ-терапии пациентам. Раннее диагностирование
             позволяет не только замедлить манифестацию СД 2 типа, но и избежать
@@ -37,10 +26,12 @@ const QuestionIntroduction: React.FC<QuestionIntroductionProps> = ({
             handleStart={handleStart}
           />
         </div>
-        <img src="../../public/images/img-1.svg" alt="img" />
+        <img
+          className="img-question"
+          src="../../public/images/img-1.svg"
+          alt="img"
+        />
       </div>
     </div>
   );
-};
-
-export default QuestionIntroduction;
+}

@@ -1,9 +1,8 @@
-import { ChangeEvent, useState } from "react";
 import Buttons from "../buttons/Buttons";
+import { ChangeEvent, useState } from "react";
 import { QuestionSevenProps } from "./Question.types";
 
 export default function QuestionSeven({
-  question,
   isValid,
   handleNext,
   currentQuestionIndex,
@@ -16,19 +15,29 @@ export default function QuestionSeven({
     setSelectedOption(event.target.value);
     handleInput(event);
   };
+
+  const handleNextQuestion = () => {
+    handleNext();
+    setSelectedOption(null);
+  };
+
   return (
     <div className="bg-questions p-3">
-      <div className="d-flex justify-content-between gap-3">
+      <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between gap-3">
         <div className="bg-questions d-flex flex-column justify-content-between ">
           <div className="fw-bold">Вопрос 7/8</div>
-          <h5 className="mb-0">{question.questionText}</h5>
+          <h5 className="mb-0">
+            Обнаруживали ли у Вашего пациента повышение глюкозы (сахара) в крови
+            выше нормы (во время диспансеризации, проф. осмотра, во время
+            болезни или беременности)?
+          </h5>
           <div className={!isValid ? "no-selection" : ""}>
             <div className="d-flex gap-5 align-items-end fs-18">
-              <div className="d-flex flex-column">
+              <div className="d-flex flex-column mt-3 mt-lg-0 ">
                 <label className="custom-radio d-inline-flex  align-items-center gap-3">
                   <input
                     type="radio"
-                    name="measurement"
+                    name="QuestionSeven1"
                     value="0"
                     checked={selectedOption === "0"}
                     onChange={handleChange}
@@ -38,7 +47,7 @@ export default function QuestionSeven({
                 <label className="custom-radio d-inline-flex  align-items-center gap-3">
                   <input
                     type="radio"
-                    name="measurement"
+                    name="QuestionSeven2"
                     value="1"
                     checked={selectedOption === "1"}
                     onChange={handleChange}
@@ -56,11 +65,15 @@ export default function QuestionSeven({
           <Buttons
             currentQuestionIndex={currentQuestionIndex}
             handleBack={handleBack}
-            handleNext={handleNext}
+            handleNext={handleNextQuestion}
             input={selectedOption}
           />
         </div>
-        <img src="../../public/images/img-8.svg" alt="img" />
+        <img
+          className="img-question"
+          src="../../public/images/img-8.svg"
+          alt="img"
+        />
       </div>
     </div>
   );

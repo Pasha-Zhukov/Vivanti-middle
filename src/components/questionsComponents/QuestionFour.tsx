@@ -1,17 +1,20 @@
 import Select from "react-select";
 import Buttons from "../buttons/Buttons";
 import { QuestionFourProps, SelectedOptionType } from "./Question.types";
+import { OptionType } from "../../question/Question.types";
+import { useState } from "react";
 
 export default function QuestionFour({
-  question,
   handleNext,
   handleBack,
-  dataSelect,
   handleInput,
   input,
   isValid,
   currentQuestionIndex,
 }: QuestionFourProps) {
+  const [selectedOption, setSelectedOption] =
+    useState<SelectedOptionType | null>(null);
+
   const customStyles = {
     option: (provided: any) => ({
       ...provided,
@@ -44,7 +47,7 @@ export default function QuestionFour({
     }),
     control: (provided: any) => ({
       ...provided,
-      width: 343,
+      maxWidth: 343,
       backgroundColor: "none",
       borderWidth: 2,
       minHeight: "44px",
@@ -67,33 +70,54 @@ export default function QuestionFour({
       width: 343,
     }),
   };
-  const selectedOption: SelectedOptionType = {
-    text: `${input == 0 ? dataSelect[0].text : dataSelect[1].text}`,
+  const dataSelect: OptionType[] = [
+    { value: "0", text: "Каждый день (0 баллов)" },
+    { value: "1", text: "Не каждый день (1 балл)" },
+  ];
+
+  const handleSelectionChange = (event: any) => {
+    setSelectedOption(event);
+    handleInput(event);
+  };
+
+  const handleNextQuestion = () => {
+    handleNext();
+    setSelectedOption(null);
+  };
+  const handleBackQuestion = () => {
+    handleBack();
+    setSelectedOption(null);
   };
   return (
     <div className="bg-questions p-3">
-      <div className="d-flex justify-content-between gap-3">
+      <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between  gap-3">
         <div className="bg-questions d-flex flex-column justify-content-between ">
           <div className="fw-bold">Вопрос 4/8</div>
-          <h5 className="mb-0">{question.questionText}</h5>
+          <h5 className="mb-3 mb-lg-0">
+            Как часто Ваш пациент ест овощи, фрукты или ягоды?
+          </h5>
           <Select
             styles={customStyles}
-            value={selectedOption}
             isSearchable={false}
             options={dataSelect}
-            onChange={handleInput}
+            value={selectedOption}
+            onChange={handleSelectionChange}
             placeholder="Выберите вариант ответа"
             getOptionLabel={(option: SelectedOptionType) => option.text}
           />
 
           <Buttons
             currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNext}
+            handleBack={handleBackQuestion}
+            handleNext={handleNextQuestion}
             input={input}
           />
         </div>
-        <img src="../../public/images/img-5.svg" alt="img" />
+        <img
+          className="img-question"
+          src="../../public/images/img-5.svg"
+          alt="img"
+        />
       </div>
     </div>
   );

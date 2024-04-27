@@ -2,16 +2,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "./components/footer/Footer";
 import Banner from "./components/banner/Banner";
 import Question from "./question/Questions";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import Methodology from "./components/methodology/Methodology";
+import { useState } from "react";
 import { questionsData } from "./data/questions";
+
 import "./App.css";
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showMethodology, setShowMethodology] = useState(false);
-  const [answers, setAnswers] = useState(
+  const [answers, setAnswers] = useState<string[]>(
     new Array(questionsData.length).fill(null)
   );
   const [totalScore, setTotalScore] = useState(0);
@@ -71,29 +71,16 @@ function App() {
       {showMethodology ? (
         <Methodology handleMethodology={handleMethodology} />
       ) : (
-        <div className="animatePresence">
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={currentQuestionIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="motion"
-            >
-              <Question
-                handleMethodology={handleMethodology}
-                handleAgain={handleAgain}
-                handleBack={handleBack}
-                onAnswer={handleNext}
-                totalScore={totalScore}
-                currentQuestionIndex={currentQuestionIndex}
-                question={questionsData[currentQuestionIndex]}
-                answer={answers[currentQuestionIndex]}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <Question
+          handleMethodology={handleMethodology}
+          handleAgain={handleAgain}
+          handleBack={handleBack}
+          onAnswer={handleNext}
+          totalScore={totalScore}
+          currentQuestionIndex={currentQuestionIndex}
+          question={questionsData[currentQuestionIndex]}
+          answer={answers[currentQuestionIndex]}
+        />
       )}
       <Footer />
     </div>

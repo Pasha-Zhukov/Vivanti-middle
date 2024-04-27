@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState } from "react";
-import { motion } from "framer-motion";
-import { OptionType, QuestionProps } from "./Question.types";
+import { Carousel } from "react-bootstrap";
+import { QuestionProps } from "./Question.types";
 import { Spinner } from "react-bootstrap";
 import "./Questions.css";
 
@@ -61,139 +61,122 @@ const Question = ({
 
     const score = question.calculateScore ? question.calculateScore(input) : 0;
     onAnswer(score, input);
+    setInput("");
   };
 
   const handleStart = () => {
     const score = question.calculateScore ? question.calculateScore(input) : 0;
     onAnswer(score, input);
     setIsValid(true);
-    setInput(null);
+    setInput("");
   };
 
-  const dataSelect: OptionType[] = [
-    { value: "0", text: "Каждый день (0 баллов)" },
-    { value: "1", text: "Не каждый день (1 балл)" },
-  ];
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      transition={{ duration: 0.5 }}
-      className="p-3"
-    >
+    <div className="p-lg-3 p-2">
       <Suspense
         fallback={
-          <div className="d-flex justify-content-center align-items-center ">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+          <div className="d-flex justify-content-center align-items-center">
+            <Spinner animation="border" role="status"></Spinner>
           </div>
         }
       >
-        {question.inputType === "introduction" && (
-          <QuestionIntroduction
-            question={question}
-            handleStart={handleStart}
-            currentQuestionIndex={currentQuestionIndex}
-          />
-        )}
-        {question.inputType === "QuestionOne" && (
-          <QuestionOne
-            question={question}
-            handleNext={handleNext}
-            input={input}
-            handleInput={handleInput}
-            isValid={isValid}
-            handleBack={handleBack}
-            currentQuestionIndex={currentQuestionIndex}
-          />
-        )}
-        {question.inputType === "QuestionTwo" && (
-          <QuestionTwo
-            question={question}
-            handleNext={handleNext}
-            handleInput={handleInput}
-            input={input}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            isValid={isValid}
-          />
-        )}
-        {question.inputType === "QuestionThree" && (
-          <QuestionThree
-            question={question}
-            handleNext={handleNext}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            isValid={isValid}
-            handleInput={handleInput}
-          />
-        )}
-        {question.inputType === "QuestionFour" && (
-          <QuestionFour
-            question={question}
-            handleNext={handleNext}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            dataSelect={dataSelect}
-            handleInput={handleInput}
-            input={input}
-            isValid={isValid}
-          />
-        )}
-        {question.inputType === "QuestionFive" && (
-          <QuestionFive
-            question={question}
-            handleNext={handleNext}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            isValid={isValid}
-            handleInput={handleInput}
-          />
-        )}
-        {question.inputType === "QuestionSix" && (
-          <QuestionSix
-            question={question}
-            handleNext={handleNext}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleInput={handleInput}
-            isValid={isValid}
-          />
-        )}
-        {question.inputType === "QuestionSeven" && (
-          <QuestionSeven
-            question={question}
-            handleNext={handleNext}
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleInput={handleInput}
-            isValid={isValid}
-          />
-        )}
-        {question.inputType === "QuestionEight" && (
-          <QuestionEight
-            question={question}
-            currentQuestionIndex={currentQuestionIndex}
-            handleNext={handleNext}
-            handleBack={handleBack}
-            handleInput={handleInput}
-            isValid={isValid}
-          />
-        )}
-        {question.inputType === "result" && (
-          <Result
-            question={question}
-            currentQuestionIndex={currentQuestionIndex}
-            handleAgain={handleAgain}
-            handleMethodology={handleMethodology}
-            totalScore={totalScore}
-          />
-        )}
+        <Carousel
+          interval={null}
+          activeIndex={currentQuestionIndex}
+          onSelect={handleNext}
+        >
+          <Carousel.Item>
+            <QuestionIntroduction
+              handleStart={handleStart}
+              currentQuestionIndex={currentQuestionIndex}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionOne
+              handleNext={handleNext}
+              input={input}
+              handleInput={handleInput}
+              isValid={isValid}
+              handleBack={handleBack}
+              currentQuestionIndex={currentQuestionIndex}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionTwo
+              handleNext={handleNext}
+              handleInput={handleInput}
+              input={input}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              isValid={isValid}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionThree
+              handleNext={handleNext}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              isValid={isValid}
+              handleInput={handleInput}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionFour
+              handleNext={handleNext}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              handleInput={handleInput}
+              input={input}
+              isValid={isValid}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionFive
+              handleNext={handleNext}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              isValid={isValid}
+              handleInput={handleInput}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionSix
+              handleNext={handleNext}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              handleInput={handleInput}
+              isValid={isValid}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionSeven
+              handleNext={handleNext}
+              currentQuestionIndex={currentQuestionIndex}
+              handleBack={handleBack}
+              handleInput={handleInput}
+              isValid={isValid}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <QuestionEight
+              currentQuestionIndex={currentQuestionIndex}
+              handleNext={handleNext}
+              handleBack={handleBack}
+              handleInput={handleInput}
+              isValid={isValid}
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <Result
+              currentQuestionIndex={currentQuestionIndex}
+              handleAgain={handleAgain}
+              handleMethodology={handleMethodology}
+              totalScore={totalScore}
+            />
+          </Carousel.Item>
+        </Carousel>
       </Suspense>
-    </motion.div>
+    </div>
   );
 };
 export default Question;

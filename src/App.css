@@ -26,3 +26,18 @@ input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators {
+  display: none !important;
+}
+
+@media (max-width: 992px) {
+  .fs-28 {
+    font-size: 1.75rem !important;
+  }
+  .fs-16 {
+    font-size: 1rem !important;
+  }
+}

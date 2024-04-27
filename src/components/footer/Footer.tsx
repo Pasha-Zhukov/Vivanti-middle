@@ -2,7 +2,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="p-5 footer">
+    <footer className="p-lg-5 p-3 footer">
       <div className="mb-3 mt-3">СВЯЖИТЕСЬ С НАМИ</div>
       <p className="phone">Телефон</p>
       <p className="location mb-5">Адрес</p>

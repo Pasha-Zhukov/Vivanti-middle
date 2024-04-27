@@ -1,6 +1,10 @@
 import { ChangeEvent } from "react";
 import { ActionMeta, SingleValue } from "react-select";
 
+export interface QuestionIntroductionProps {
+  currentQuestionIndex: number;
+  handleStart: () => void;
+}
 export type SelectedOptionType = {
   text: string;
   value?: string;
@@ -8,9 +12,6 @@ export type SelectedOptionType = {
 };
 
 export interface QuestionOneProps {
-  question: {
-    questionText: string;
-  };
   currentQuestionIndex: number;
   handleNext: () => void;
   handleBack: () => void;
@@ -20,9 +21,6 @@ export interface QuestionOneProps {
 }
 
 export interface QuestionTwoProps {
-  question: {
-    questionText: string;
-  };
   currentQuestionIndex: number;
   isValid: boolean;
   handleNext: () => void;
@@ -32,9 +30,6 @@ export interface QuestionTwoProps {
 }
 
 export interface QuestionThreeProps {
-  question: {
-    questionText: string;
-  };
   isValid: boolean;
   handleNext: () => void;
   handleBack: () => void;
@@ -43,15 +38,11 @@ export interface QuestionThreeProps {
 }
 
 export type QuestionFourProps = {
-  question: {
-    questionText: string;
-  };
   handleNext: () => void;
   handleBack: () => void;
-  dataSelect: SelectedOptionType[];
   handleInput: (
     newValue: SingleValue<SelectedOptionType>,
-    actionMeta: ActionMeta<SelectedOptionType>
+    actionMeta?: ActionMeta<SelectedOptionType>
   ) => void;
   input: number;
   isValid: boolean;
@@ -59,9 +50,6 @@ export type QuestionFourProps = {
 };
 
 export interface QuestionFiveProps {
-  question: {
-    questionText: string;
-  };
   isValid: boolean;
   handleNext: () => void;
   currentQuestionIndex: number;
@@ -70,9 +58,6 @@ export interface QuestionFiveProps {
 }
 
 export interface QuestionSixProps {
-  question: {
-    questionText: string;
-  };
   isValid: boolean;
   handleNext: () => void;
   currentQuestionIndex: number;
@@ -81,9 +66,6 @@ export interface QuestionSixProps {
 }
 
 export interface QuestionSevenProps {
-  question: {
-    questionText: string;
-  };
   isValid: boolean;
   handleNext: () => void;
   currentQuestionIndex: number;
@@ -92,9 +74,6 @@ export interface QuestionSevenProps {
 }
 
 export type QuestionEightProps = {
-  question: {
-    questionText: string;
-  };
   isValid: boolean;
   handleNext: () => void;
   currentQuestionIndex: number;
@@ -103,9 +82,6 @@ export type QuestionEightProps = {
 };
 
 export interface ResultProps {
-  question: {
-    questionText: string;
-  };
   currentQuestionIndex: number;
   handleAgain: () => void;
   handleMethodology: () => void;

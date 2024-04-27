@@ -2,7 +2,6 @@ import Buttons from "../buttons/Buttons";
 import { QuestionTwoProps } from "./Question.types";
 
 export default function QuestionTwo({
-  question,
   currentQuestionIndex,
   isValid,
   handleNext,
@@ -12,11 +11,11 @@ export default function QuestionTwo({
 }: QuestionTwoProps) {
   return (
     <div className="bg-questions p-3">
-      <div className="d-flex justify-content-between gap-3">
-        <div className="bg-questions d-flex flex-column justify-content-between ">
+      <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between ">
+        <div className="bg-questions d-flex flex-column justify-content-between mt-lg-0 mt-3">
           <div className="fw-bold">Вопрос 2/8</div>
-          <h5 className="mb-0">{question.questionText}</h5>
-          <div className="w-75">
+          <h5 className="mb-0">Рассчитайте индекс массы тела пациента</h5>
+          <div className="width-input">
             Индекс массы тела позволяет выявить наличие избыточного веса или
             ожирения <br />
             (ИМТ = вес, кг / рост, м^2). Если у Вас не получается произвести
@@ -32,8 +31,8 @@ export default function QuestionTwo({
           <input
             className={
               isValid
-                ? "p-2 pe-5 border-black bg-questions w-50 mt-3 mb-3 "
-                : "p-2 pe-5 border-black bg-questions w-50 mt-3 mb-3 invalid"
+                ? "p-2 pe-5 bg-questions width-input"
+                : "p-2 pe-5 bg-questions width-input invalid"
             }
             type="number"
             placeholder="Текст"
@@ -51,7 +50,11 @@ export default function QuestionTwo({
             input={input}
           />
         </div>
-        <img src="../../public/images/img-3.svg" alt="img" />
+        <img
+          className="img-question"
+          src="../../public/images/img-3.svg"
+          alt="img"
+        />
       </div>
     </div>
   );

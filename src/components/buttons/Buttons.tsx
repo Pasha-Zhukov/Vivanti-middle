@@ -11,9 +11,12 @@ export default function Buttons({
   input,
 }: Props) {
   return (
-    <div className="d-flex gap-3 mt-3">
+    <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
       {currentQuestionIndex >= 9 && (
-        <button className=" result-img w-100" onClick={handleMethodology}>
+        <button
+          className=" result-img w-100 h-100 "
+          onClick={handleMethodology}
+        >
           Методология подсчета результата
         </button>
       )}
