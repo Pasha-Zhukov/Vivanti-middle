@@ -1,10 +1,15 @@
+import { useDispatch } from "react-redux";
+import { showMethodology } from "../../redux/quizReducer";
+
 import "./Methodology.css";
 
-interface MethodologyProps {
-  handleMethodology: (arg: boolean) => void;
-}
+export default function Methodology() {
+  const dispatch = useDispatch();
 
-export default function Methodology({ handleMethodology }: MethodologyProps) {
+  const handleMethodology = () => {
+    dispatch(showMethodology(false));
+  };
+
   return (
     <>
       <div className="d-flex justify-content-center">
@@ -149,7 +154,7 @@ export default function Methodology({ handleMethodology }: MethodologyProps) {
         </div>
       </div>
       <div className="d-flex justify-content-center mb-5">
-        <button className="btn-back" onClick={() => handleMethodology(false)}>
+        <button className="btn-back" onClick={handleMethodology}>
           Назад
         </button>
       </div>

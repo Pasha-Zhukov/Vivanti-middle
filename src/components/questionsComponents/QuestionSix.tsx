@@ -1,25 +1,27 @@
-import Buttons from "../buttons/Buttons";
+import { useDispatch } from "react-redux";
+import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import ButtonNext from "../buttons/ButtonNext";
+import ButtonPrev from "../buttons/ButtonPrev";
 import { ChangeEvent, useState } from "react";
-import { QuestionSixProps } from "./Question.types";
 
-export default function QuestionSix({
-  isValid,
-  handleNext,
-  currentQuestionIndex,
-  handleBack,
-  handleInput,
-}: QuestionSixProps) {
+export default function QuestionSix() {
+  const [isValid, setIsValid] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
-    handleInput(event);
+    setIsValid(true);
   };
 
-  const handleNextQuestion = () => {
-    handleNext();
+  const handleNext = () => {
+    if (selectedOption) {
+      dispatch(questionsOther(selectedOption));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
     setSelectedOption(null);
   };
+
   return (
     <div className="bg-questions p-3">
       <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between gap-3">
@@ -59,13 +61,10 @@ export default function QuestionSix({
               </div>
             </div>
           </div>
-
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNextQuestion}
-            input={selectedOption}
-          />
+          <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
+            <ButtonPrev />
+            <ButtonNext onClick={handleNext} answer={selectedOption} />
+          </div>
         </div>
         <img
           className="img-question"

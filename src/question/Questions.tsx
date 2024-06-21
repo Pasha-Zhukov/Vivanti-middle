@@ -1,8 +1,9 @@
 import { Suspense, lazy, useState } from "react";
 import { Carousel } from "react-bootstrap";
-import { QuestionProps } from "./Question.types";
 import { Spinner } from "react-bootstrap";
+import { nextQuestion } from "../redux/quizReducer";
 import "./Questions.css";
+import { useDispatch, useSelector } from "react-redux";
 
 const QuestionIntroduction = lazy(
   () => import("../components/questionsComponents/QuestionIntroduction")
@@ -33,43 +34,37 @@ const QuestionEight = lazy(
 );
 const Result = lazy(() => import("../components/questionsComponents/Result"));
 
-const Question = ({
-  question,
-  answer,
-  onAnswer,
-  currentQuestionIndex,
-  handleBack,
-  handleAgain,
-  totalScore,
-  handleMethodology,
-}: QuestionProps) => {
-  const [input, setInput] = useState<any>(answer || "");
-  const [isValid, setIsValid] = useState(true);
-
-  const handleInput = (event: any) => {
-    const value = event?.target?.value || event?.value || event;
-    setInput(value);
-    setIsValid(true);
-  };
+const Question = () => {
+  const dispatch = useDispatch();
+  const currentQuestionIndex = useSelector(
+    (state: { quiz: { currentQuestionIndex: number } }) =>
+      state.quiz.currentQuestionIndex
+  );
 
   const handleNext = () => {
-    if (!input) {
-      setIsValid(false);
-      return;
-    }
-    setIsValid(true);
-
-    const score = question.calculateScore ? question.calculateScore(input) : 0;
-    onAnswer(score, input);
-    setInput("");
+    dispatch(nextQuestion());
   };
 
-  const handleStart = () => {
-    const score = question.calculateScore ? question.calculateScore(input) : 0;
-    onAnswer(score, input);
-    setIsValid(true);
-    setInput("");
-  };
+  // const [isValid, setIsValid] = useState(true);
+
+  // const handleNext = () => {
+  //   if (!input) {
+  //     setIsValid(false);
+  //     return;
+  //   }
+  //   setIsValid(true);
+
+  //   const score = question.calculateScore ? question.calculateScore(input) : 0;
+  //   onAnswer(score, input);
+  //   setInput("");
+  // };
+
+  // const handleStart = () => {
+  //   const score = question.calculateScore ? question.calculateScore(input) : 0;
+  //   onAnswer(score, input);
+  //   setIsValid(true);
+  //   setInput("");
+  // };
 
   return (
     <div className="p-lg-3 p-2">
@@ -86,93 +81,34 @@ const Question = ({
           onSelect={handleNext}
         >
           <Carousel.Item>
-            <QuestionIntroduction
-              handleStart={handleStart}
-              currentQuestionIndex={currentQuestionIndex}
-            />
+            <QuestionIntroduction />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionOne
-              handleNext={handleNext}
-              input={input}
-              handleInput={handleInput}
-              isValid={isValid}
-              handleBack={handleBack}
-              currentQuestionIndex={currentQuestionIndex}
-            />
+            <QuestionOne />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionTwo
-              handleNext={handleNext}
-              handleInput={handleInput}
-              input={input}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              isValid={isValid}
-            />
+            <QuestionTwo />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionThree
-              handleNext={handleNext}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              isValid={isValid}
-              handleInput={handleInput}
-            />
+            <QuestionThree />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionFour
-              handleNext={handleNext}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              handleInput={handleInput}
-              input={input}
-              isValid={isValid}
-            />
+            <QuestionFour />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionFive
-              handleNext={handleNext}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              isValid={isValid}
-              handleInput={handleInput}
-            />
+            <QuestionFive />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionSix
-              handleNext={handleNext}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              handleInput={handleInput}
-              isValid={isValid}
-            />
+            <QuestionSix />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionSeven
-              handleNext={handleNext}
-              currentQuestionIndex={currentQuestionIndex}
-              handleBack={handleBack}
-              handleInput={handleInput}
-              isValid={isValid}
-            />
+            <QuestionSeven />
           </Carousel.Item>
           <Carousel.Item>
-            <QuestionEight
-              currentQuestionIndex={currentQuestionIndex}
-              handleNext={handleNext}
-              handleBack={handleBack}
-              handleInput={handleInput}
-              isValid={isValid}
-            />
+            <QuestionEight />
           </Carousel.Item>
           <Carousel.Item>
-            <Result
-              currentQuestionIndex={currentQuestionIndex}
-              handleAgain={handleAgain}
-              handleMethodology={handleMethodology}
-              totalScore={totalScore}
-            />
+            <Result />
           </Carousel.Item>
         </Carousel>
       </Suspense>

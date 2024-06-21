@@ -1,10 +1,6 @@
-import Buttons from "../buttons/Buttons";
-import { QuestionIntroductionProps } from "./Question.types";
+import ButtonStart from "../buttons/ButtonStart";
 
-export default function QuestionIntroduction({
-  currentQuestionIndex,
-  handleStart,
-}: QuestionIntroductionProps) {
+export default function QuestionIntroduction() {
   return (
     <div className="bg-questions p-3 h-100 ">
       <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-lg-3">
@@ -21,10 +17,7 @@ export default function QuestionIntroduction({
             этот короткий опрос, чтобы оценить 10-летний риск развития СД 2 типа
             и дать необходимые рекомендации.
           </p>
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleStart={handleStart}
-          />
+          <ButtonStart />
         </div>
         <img
           className="img-question"

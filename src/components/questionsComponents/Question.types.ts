@@ -3,7 +3,6 @@ import { ActionMeta, SingleValue } from "react-select";
 
 export interface QuestionIntroductionProps {
   currentQuestionIndex: number;
-  handleStart: () => void;
 }
 export type SelectedOptionType = {
   text: string;
@@ -13,8 +12,6 @@ export type SelectedOptionType = {
 
 export interface QuestionOneProps {
   currentQuestionIndex: number;
-  handleNext: () => void;
-  handleBack: () => void;
   isValid: boolean;
   input: string;
   handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;

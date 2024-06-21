@@ -1,54 +1,50 @@
-import Buttons from "../buttons/Buttons";
+import { useDispatch } from "react-redux";
+import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import ButtonNext from "../buttons/ButtonNext";
+import ButtonPrev from "../buttons/ButtonPrev";
 import { ChangeEvent, useState } from "react";
-import { QuestionEightProps } from "./Question.types";
 
-export default function QuestionEight({
-  isValid,
-  handleNext,
-  currentQuestionIndex,
-  handleBack,
-  handleInput,
-}: QuestionEightProps) {
-  const [selectedOption, setSelectedOption] = useState<string[]>([]);
+export default function QuestionEight() {
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [isValid, setIsValid] = useState(true);
+  const dispatch = useDispatch();
 
   const handleSelectionChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
-    let newSelection = [...selectedOption];
 
-    if (value === "0") {
+    setSelectedOptions((prevOptions) => {
+      let newSelection = [];
       if (checked) {
-        newSelection = ["0"];
-      } else {
-        newSelection = [];
-      }
-    } else {
-      if (checked) {
-        if (!newSelection.includes("0") && newSelection.length < 2) {
+        if (value === "0") {
+          newSelection = ["0"];
+        } else {
+          newSelection = prevOptions.filter((option) => option !== "0");
           newSelection.push(value);
         }
       } else {
-        newSelection = newSelection.filter((item) => item !== value);
+        newSelection = prevOptions.filter((option) => option !== value);
       }
-    }
+      return newSelection;
+    });
 
-    setSelectedOption(newSelection);
-    sendInput(newSelection);
+    setIsValid(true);
   };
 
-  const sendInput = (selection: string[]) => {
-    if (selection.includes("0")) {
-      handleInput("0" as any);
-    } else {
-      const sum = selection.reduce((acc, cur) => acc + parseInt(cur, 10), 0);
-      handleInput(sum);
-    }
+  const isChecked = (value: string) => selectedOptions.includes(value);
+
+  const calculateScore = (selection: string[]) => {
+    if (selection.includes("3") && selection.includes("5")) return 8;
+    if (selection.includes("0")) return "0";
+    if (selection.includes("3")) return "3";
+    if (selection.includes("5")) return "5";
   };
 
-  const isChecked = (value: string) => selectedOption.includes(value);
-
-  const handleNextQuestion = () => {
-    handleNext();
-    setSelectedOption([]);
+  const handleNext = () => {
+    if (selectedOptions) {
+      dispatch(questionsOther(calculateScore(selectedOptions)));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
+    setSelectedOptions([]);
   };
 
   return (
@@ -87,7 +83,7 @@ export default function QuestionEight({
                     />
                     <span className="text-nowrap fs-16">
                       {value === "3"
-                        ? "Да: дедушка/бабушка..."
+                        ? "Да: дедушка/бабушка"
                         : "Да: родители, брат/сестра"}
                     </span>
                   </label>
@@ -100,13 +96,16 @@ export default function QuestionEight({
               </div>
             </div>
           </div>
-
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNextQuestion}
-            input={selectedOption.length}
-          />
+          <div
+            onClick={() => setSelectedOptions([])}
+            className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3"
+          >
+            <ButtonPrev />
+            <ButtonNext
+              onClick={handleNext}
+              answer={calculateScore(selectedOptions)}
+            />
+          </div>
         </div>
         <img
           className="img-question"

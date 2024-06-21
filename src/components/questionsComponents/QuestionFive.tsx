@@ -1,23 +1,24 @@
-import Buttons from "../buttons/Buttons";
 import { ChangeEvent, useState } from "react";
-import { QuestionFiveProps } from "./Question.types";
+import ButtonPrev from "../buttons/ButtonPrev";
+import ButtonNext from "../buttons/ButtonNext";
+import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { useDispatch } from "react-redux";
 
-export default function QuestionFive({
-  isValid,
-  currentQuestionIndex,
-  handleNext,
-  handleBack,
-  handleInput,
-}: QuestionFiveProps) {
+export default function QuestionFive() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isValid, setIsValid] = useState(true);
+  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
-    handleInput(event);
+    setIsValid(true);
   };
 
-  const handleNextQuestion = () => {
-    handleNext();
+  const handleNext = () => {
+    if (selectedOption) {
+      dispatch(questionsOther(selectedOption));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
     setSelectedOption(null);
   };
 
@@ -62,12 +63,10 @@ export default function QuestionFive({
             </div>
           </div>
 
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNextQuestion}
-            input={selectedOption}
-          />
+          <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
+            <ButtonPrev />
+            <ButtonNext onClick={handleNext} answer={selectedOption} />
+          </div>
         </div>
         <img
           className="img-question"

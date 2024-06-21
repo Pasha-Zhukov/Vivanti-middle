@@ -1,4 +1,14 @@
-export default function ResultTest({ totalScore }: { totalScore: number }) {
+import { useSelector } from "react-redux";
+
+export default function ResultTest() {
+  const questionsData = useSelector((state: any) => state.quiz.questions);
+
+  const totalScore = questionsData.reduce(
+    (totalScore: number, question: { score: number }) =>
+      totalScore + question.score,
+    0
+  );
+
   return (
     <>
       {totalScore < 7 && (

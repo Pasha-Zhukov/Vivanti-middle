@@ -1,19 +1,18 @@
 import Select from "react-select";
-import Buttons from "../buttons/Buttons";
-import { QuestionFourProps, SelectedOptionType } from "./Question.types";
-import { OptionType } from "../../question/Question.types";
+import { SelectedOptionType } from "./Question.types";
+import { OptionType } from "../../question/Questions.types";
 import { useState } from "react";
+import ButtonPrev from "../buttons/ButtonPrev";
+import ButtonNext from "../buttons/ButtonNext";
+import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { useDispatch } from "react-redux";
 
-export default function QuestionFour({
-  handleNext,
-  handleBack,
-  handleInput,
-  input,
-  isValid,
-  currentQuestionIndex,
-}: QuestionFourProps) {
+export default function QuestionFour() {
+  const [isValid, setIsValid] = useState(true);
   const [selectedOption, setSelectedOption] =
     useState<SelectedOptionType | null>(null);
+
+  const dispatch = useDispatch();
 
   const customStyles = {
     option: (provided: any) => ({
@@ -77,17 +76,17 @@ export default function QuestionFour({
 
   const handleSelectionChange = (event: any) => {
     setSelectedOption(event);
-    handleInput(event);
+    setIsValid(true);
   };
 
-  const handleNextQuestion = () => {
-    handleNext();
+  const handleNext = () => {
+    if (selectedOption) {
+      dispatch(questionsOther(selectedOption));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
     setSelectedOption(null);
   };
-  const handleBackQuestion = () => {
-    handleBack();
-    setSelectedOption(null);
-  };
+
   return (
     <div className="bg-questions p-3">
       <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between  gap-3">
@@ -106,12 +105,10 @@ export default function QuestionFour({
             getOptionLabel={(option: SelectedOptionType) => option.text}
           />
 
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBackQuestion}
-            handleNext={handleNextQuestion}
-            input={input}
-          />
+          <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
+            <ButtonPrev />
+            <ButtonNext onClick={handleNext} answer={selectedOption} />
+          </div>
         </div>
         <img
           className="img-question"

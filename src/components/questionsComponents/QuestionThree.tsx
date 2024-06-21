@@ -1,14 +1,10 @@
-import Buttons from "../buttons/Buttons";
+import { useDispatch } from "react-redux";
+import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import ButtonNext from "../buttons/ButtonNext";
+import ButtonPrev from "../buttons/ButtonPrev";
 import { useState, ChangeEvent } from "react";
-import { QuestionThreeProps } from "./Question.types";
 
-export default function QuestionThree({
-  isValid,
-  handleNext,
-  handleBack,
-  currentQuestionIndex,
-  handleInput,
-}: QuestionThreeProps) {
+export default function QuestionThree() {
   const [selectedOptionMan, setSelectedOptionMan] = useState<string | null>(
     null
   );
@@ -16,22 +12,29 @@ export default function QuestionThree({
     null
   );
 
+  const [isValid, setIsValid] = useState(true);
+
+  const dispatch = useDispatch();
+
   const handleChangeMan = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOptionWoman(null);
     setSelectedOptionMan(event.target.value);
-    handleInput(event);
+    setIsValid(true);
   };
 
   const handleChangeWoman = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOptionMan(null);
     setSelectedOptionWoman(event.target.value);
-    handleInput(event);
+    setIsValid(true);
   };
 
-  const handleNextQuestion = () => {
-    handleNext();
-    setSelectedOptionWoman(null);
-    setSelectedOptionMan(null);
+  const handleNext = () => {
+    if (selectedOptionMan || selectedOptionWoman) {
+      dispatch(questionsOther(selectedOptionMan || selectedOptionWoman));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
+    setSelectedOptionMan("");
+    setSelectedOptionWoman("");
   };
 
   return (
@@ -116,12 +119,13 @@ export default function QuestionThree({
             </div>
           </div>
 
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNextQuestion}
-            input={selectedOptionMan || selectedOptionWoman}
-          />
+          <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
+            <ButtonPrev />
+            <ButtonNext
+              onClick={handleNext}
+              answer={selectedOptionMan || selectedOptionWoman}
+            />
+          </div>
         </div>
         <img
           className="img-question"

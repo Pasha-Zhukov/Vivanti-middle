@@ -1,14 +1,32 @@
-import Buttons from "../buttons/Buttons";
-import { QuestionTwoProps } from "./Question.types";
+import { ChangeEvent, useState } from "react";
+import ButtonPrev from "../buttons/ButtonPrev";
+import ButtonNext from "../buttons/ButtonNext";
+import { nextQuestion, questionTwo } from "../../redux/quizReducer";
+import { useDispatch } from "react-redux";
 
-export default function QuestionTwo({
-  currentQuestionIndex,
-  isValid,
-  handleNext,
-  handleInput,
-  handleBack,
-  input,
-}: QuestionTwoProps) {
+export default function QuestionTwo() {
+  const [input, setInput] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  const dispatch = useDispatch();
+
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    if (/^\d{0,2}$/.test(input)) {
+      setInput(event.target.value);
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  };
+
+  const handleNext = () => {
+    if (input) {
+      dispatch(questionTwo(input));
+      dispatch(nextQuestion());
+    } else setIsValid(false);
+    setInput("");
+  };
+
   return (
     <div className="bg-questions p-3">
       <div className="d-flex flex-column flex-lg-row flex-column-reverse  justify-content-between ">
@@ -43,12 +61,10 @@ export default function QuestionTwo({
             Менее 25 кг/м2 (0 баллов), 25—30 кг/м2 (1 балл), <br />
             больше 30 кг/м2 (3 балла)
           </p>
-          <Buttons
-            currentQuestionIndex={currentQuestionIndex}
-            handleBack={handleBack}
-            handleNext={handleNext}
-            input={input}
-          />
+          <div className="d-flex flex-column flex-lg-row flex-column-reverse gap-3 mt-3">
+            <ButtonPrev />
+            <ButtonNext onClick={handleNext} answer={input} />
+          </div>
         </div>
         <img
           className="img-question"
