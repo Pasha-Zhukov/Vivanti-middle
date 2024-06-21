@@ -1,8 +1,9 @@
+import img2 from "../../../public/images/img-2.svg";
 import { ChangeEvent, useState } from "react";
 import ButtonNext from "../buttons/ButtonNext";
 import ButtonPrev from "../buttons/ButtonPrev";
 import { nextQuestion, questionOne } from "../../redux/quizReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function QuestionOne() {
   const [input, setInput] = useState("");
@@ -58,11 +59,7 @@ export default function QuestionOne() {
             <ButtonNext onClick={handleNext} answer={input} />
           </div>
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-2.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img2} alt="img" />
       </div>
     </div>
   );

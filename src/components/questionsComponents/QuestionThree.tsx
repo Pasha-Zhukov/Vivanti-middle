@@ -1,3 +1,4 @@
+import img4 from "../../../public/images/img-4.svg";
 import { useDispatch } from "react-redux";
 import { nextQuestion, questionsOther } from "../../redux/quizReducer";
 import ButtonNext from "../buttons/ButtonNext";
@@ -127,11 +128,7 @@ export default function QuestionThree() {
             />
           </div>
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-4.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img4} alt="img" />
       </div>
     </div>
   );

@@ -1,3 +1,8 @@
+import circle12 from ".././../../public/images/circle-12.svg";
+import circle15 from ".././../../public/images/circle-15.svg";
+import circle14 from ".././../../public/images/circle-14.svg";
+import circle20 from ".././../../public/images/circle-20.svg";
+
 import { useDispatch } from "react-redux";
 import { showMethodology } from "../../redux/quizReducer";
 
@@ -104,7 +109,7 @@ export default function Methodology() {
         <div className="d-flex flex-column gap-3 justify-content-between ">
           <div className="d-flex align-items-start flex-column flex-lg-row gap-3">
             <div className="d-flex align-items-center flex-column ">
-              <img src="../../../public/images/circle-12.svg" alt="circle" />
+              <img src={circle12} alt="circle" />
               <div className="text-circle"> {"<12"}</div>
             </div>
             <p className="fs-18">
@@ -115,7 +120,7 @@ export default function Methodology() {
 
           <div className="d-flex align-items-start flex-column flex-lg-row gap-3">
             <div className="d-flex align-items-center flex-column ">
-              <img src="../../../public/images/circle-15.svg" alt="circle" />
+              <img src={circle15} alt="circle" />
               <div className="text-circle text-nowrap "> {"15—20"}</div>
             </div>
             <p className="fs-18">
@@ -130,7 +135,7 @@ export default function Methodology() {
         <div className="d-flex flex-column  justify-content-between ">
           <div className="d-flex align-items-start flex-column flex-lg-row gap-3">
             <div className="d-flex align-items-center flex-column ">
-              <img src="../../../public/images/circle-14.svg" alt="circle" />
+              <img src={circle14} alt="circle" />
               <div className="text-circle"> {"12—14"}</div>
             </div>
             <p className="fs-18">
@@ -140,7 +145,7 @@ export default function Methodology() {
           </div>
           <div className="d-flex align-items-start flex-column flex-lg-row gap-3">
             <div className="d-flex align-items-center flex-column ">
-              <img src="../../../public/images/circle-20.svg" alt="circle" />
+              <img src={circle20} alt="circle" />
               <div className="text-circle"> {">20"}</div>
             </div>
             <p className="fs-18">

@@ -1,3 +1,4 @@
+import img3 from "../../../public/images/img-3.svg";
 import { ChangeEvent, useState } from "react";
 import ButtonPrev from "../buttons/ButtonPrev";
 import ButtonNext from "../buttons/ButtonNext";
@@ -66,11 +67,7 @@ export default function QuestionTwo() {
             <ButtonNext onClick={handleNext} answer={input} />
           </div>
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-3.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img3} alt="img" />
       </div>
     </div>
   );

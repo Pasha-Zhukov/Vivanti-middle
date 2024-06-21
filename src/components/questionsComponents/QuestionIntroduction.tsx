@@ -1,3 +1,4 @@
+import img1 from "../../../public/images/img-1.svg";
 import ButtonStart from "../buttons/ButtonStart";
 
 export default function QuestionIntroduction() {
@@ -19,11 +20,7 @@ export default function QuestionIntroduction() {
           </p>
           <ButtonStart />
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-1.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img1} alt="img" />
       </div>
     </div>
   );

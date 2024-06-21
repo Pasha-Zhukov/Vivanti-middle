@@ -1,3 +1,4 @@
+import img6 from "../../../public/images/img-6.svg";
 import { ChangeEvent, useState } from "react";
 import ButtonPrev from "../buttons/ButtonPrev";
 import ButtonNext from "../buttons/ButtonNext";
@@ -68,11 +69,7 @@ export default function QuestionFive() {
             <ButtonNext onClick={handleNext} answer={selectedOption} />
           </div>
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-6.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img6} alt="img" />
       </div>
     </div>
   );

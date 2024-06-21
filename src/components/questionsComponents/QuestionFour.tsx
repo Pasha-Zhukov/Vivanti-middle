@@ -1,3 +1,5 @@
+
+import img5 from "../../../public/images/img-5.svg";
 import Select from "react-select";
 import { SelectedOptionType } from "./Question.types";
 import { OptionType } from "../../question/Questions.types";
@@ -112,7 +114,7 @@ export default function QuestionFour() {
         </div>
         <img
           className="img-question"
-          src="../../public/images/img-5.svg"
+          src={img5}
           alt="img"
         />
       </div>

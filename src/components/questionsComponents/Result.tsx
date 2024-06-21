@@ -1,3 +1,4 @@
+import img4 from "../../../public/images/img-4.svg";
 import ButtonAgain from "../buttons/ButtonAgain";
 import ButtonShowMethodology from "../buttons/ButtonShowMethodology";
 import ResultTest from "../resultTest/ResultTest";
@@ -14,11 +15,7 @@ export default function Result() {
             <ButtonAgain />
           </div>
         </div>
-        <img
-          className="img-question"
-          src="../../public/images/img-4.svg"
-          alt="img"
-        />
+        <img className="img-question" src={img4} alt="img" />
       </div>
     </div>
   );

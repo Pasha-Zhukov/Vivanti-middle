@@ -2,7 +2,7 @@ import React from "react";
 
 type ButtonNextProps = {
   onClick: () => void;
-  answer: string | number | undefined;
+  answer: any;
 };
 
 const ButtonNext: React.FC<ButtonNextProps> = ({ onClick, answer }) => {

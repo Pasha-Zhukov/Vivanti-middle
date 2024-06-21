@@ -1,3 +1,4 @@
+import img8 from "../../../public/images/img-8.svg";
 import { ChangeEvent, useState } from "react";
 import ButtonPrev from "../buttons/ButtonPrev";
 import ButtonNext from "../buttons/ButtonNext";
@@ -70,7 +71,7 @@ export default function QuestionSeven() {
         </div>
         <img
           className="img-question"
-          src="../../public/images/img-8.svg"
+          src={img8}
           alt="img"
         />
       </div>
