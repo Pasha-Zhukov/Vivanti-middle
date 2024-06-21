@@ -1,3 +1,7 @@
+## GH Pages
+
+https://pasha-zhukov.github.io/Vivanti-middle/
+
 ## Installation
 
 To run this project, follow these steps:
@@ -17,5 +21,6 @@ npm run dev
 ```bash
 react
 typescript
+Redux
 react-bootstrap
 ```
