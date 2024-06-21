@@ -1,0 +1,1 @@
+import{j as s,r as o,u as e,p as a}from"./index-QMaEzabS.js";/* empty css                */const c=({onClick:t,answer:n})=>s.jsx("button",{className:n?"btn-next ":"btn-next inactive",onClick:t,children:"Далее"}),x=c,r=()=>{const t=e(),n=()=>{t(a())};return s.jsx("button",{className:"btn-back",onClick:n,children:"Назад"})},p=o.memo(r);export{p as B,x as a};
