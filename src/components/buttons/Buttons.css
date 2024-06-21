@@ -11,7 +11,6 @@
   font-size: 1.63rem;
   font-weight: 700;
   line-height: 2.25rem;
-  letter-spacing: 0rem;
   text-align: center;
 }
 
@@ -59,9 +58,9 @@
   display: inline-block;
   background-image: url("../../../public/images/arrow-next.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-left: 10px;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin-left: 0.625rem;
 }
 
 .btn-back::before {
@@ -69,18 +68,18 @@
   display: inline-block;
   background-image: url("../../../public/images/arrow-back.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin-right: 0.625rem;
 }
 .btn-back:hover::before {
   content: "";
   display: inline-block;
   background-image: url("../../../public/images/arrow-back-hover.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin-right: 0.625rem;
 }
 
 .result-img::before {
@@ -88,9 +87,9 @@
   display: inline-block;
   background-image: url("../../../public/images/result-img.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
+  min-width: 2.375rem;
+  height: 2.375rem;
+  margin-right: 0.625rem;
   margin-top: 5px;
 }
 
@@ -99,9 +98,9 @@
   display: inline-block;
   background-image: url("../../../public/images/result-img-hover.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin-right: 0.625rem;
   margin-top: 5px;
 }
 
@@ -110,18 +109,18 @@
   display: inline-block;
   background-image: url("../../../public/images/arrow-back.svg");
   background-repeat: no-repeat;
-  width: 38px;
-  height: 38px;
-  margin-right: 10px;
+  width: 2.375rem;
+  height: 2.375rem;
+  margin-right: 0.625rem;
 }
 .btn-again::before {
   content: "";
   display: inline-block;
   background-image: url("../../../public/images/again-img.svg");
   background-repeat: no-repeat;
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.625rem;
 }
 .invalid {
   border: 2px solid red !important;
@@ -139,5 +138,6 @@
   .result-img {
     min-height: 3.25rem;
     min-width: 12.5rem;
+    line-height: 1.6rem;
   }
 }

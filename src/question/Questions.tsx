@@ -2,8 +2,9 @@ import { Suspense, lazy } from "react";
 import { Carousel } from "react-bootstrap";
 import { Spinner } from "react-bootstrap";
 import { nextQuestion } from "../redux/quizReducer";
-import "./Questions.css";
 import { useDispatch, useSelector } from "react-redux";
+
+import "./Questions.css";
 
 const QuestionIntroduction = lazy(
   () => import("../components/questionsComponents/QuestionIntroduction")
@@ -45,27 +46,6 @@ const Question = () => {
     dispatch(nextQuestion());
   };
 
-  // const [isValid, setIsValid] = useState(true);
-
-  // const handleNext = () => {
-  //   if (!input) {
-  //     setIsValid(false);
-  //     return;
-  //   }
-  //   setIsValid(true);
-
-  //   const score = question.calculateScore ? question.calculateScore(input) : 0;
-  //   onAnswer(score, input);
-  //   setInput("");
-  // };
-
-  // const handleStart = () => {
-  //   const score = question.calculateScore ? question.calculateScore(input) : 0;
-  //   onAnswer(score, input);
-  //   setIsValid(true);
-  //   setInput("");
-  // };
-
   return (
     <div className="p-lg-3 p-2">
       <Suspense
@@ -76,6 +56,7 @@ const Question = () => {
         }
       >
         <Carousel
+          touch={false}
           interval={null}
           activeIndex={currentQuestionIndex}
           onSelect={handleNext}

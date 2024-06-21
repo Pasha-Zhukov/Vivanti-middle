@@ -1,7 +1,7 @@
-import "./Buttons.css";
-
 import { resetScore } from "../../redux/quizReducer";
 import { useDispatch } from "react-redux";
+
+import "./Buttons.css";
 
 const ButtonAgain = () => {
   const dispatch = useDispatch();

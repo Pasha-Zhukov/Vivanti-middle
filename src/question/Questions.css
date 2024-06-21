@@ -1,31 +1,32 @@
 .no-selection .custom-radio input {
-  outline: 2px solid red;
+  outline: 0.125rem solid red; 
 }
 
 .custom-radio input {
   appearance: none;
   -webkit-appearance: none;
   background-color: white;
-  border: 1px solid black;
-  width: 20px;
-  height: 20px;
+  border: 0.0625rem solid black; 
+  width: 1.25rem; 
+  height: 1.25rem; 
   display: inline-block;
 }
 
 .custom-radio input:checked {
   background-color: rgb(0, 0, 0);
-  -webkit-box-shadow: 0px 0px 0px 4px rgb(255, 255, 255) inset;
-  -moz-box-shadow: 0px 0px 0px 4px rgb(255, 253, 253) inset;
-  box-shadow: 0px 0px 0px 4px rgb(255, 255, 255) inset;
+  -webkit-box-shadow: 0px 0px 0px 0.25rem rgb(255, 255, 255) inset; 
+  -moz-box-shadow: 0px 0px 0px 0.25rem rgb(255, 253, 253) inset; 
+  box-shadow: 0px 0px 0px 0.25rem rgb(255, 255, 255) inset; 
 }
+
 .width-input {
   width: 72%;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 992px) { 
   .img-question {
     width: 100%;
-    max-height: 200px;
+    max-height: 12.5rem; 
     object-fit: cover;
   }
   .width-input {
