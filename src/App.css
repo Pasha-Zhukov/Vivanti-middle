@@ -40,4 +40,10 @@ input[type="number"] {
   .fs-16 {
     font-size: 1rem !important;
   }
+  .fs-18 {
+    font-size: 0.9rem;
+  }
+  .header {
+    height: 1.8rem;
+  }
 }

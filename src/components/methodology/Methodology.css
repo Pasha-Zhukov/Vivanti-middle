@@ -38,3 +38,14 @@
   font-size: 1.5rem;
   font-weight: 800;
 }
+
+@media (max-width: 992px) {
+  .img-question {
+    width: 100%;
+    max-height: 12.5rem;
+    object-fit: cover;
+  }
+  .width-input {
+    width: 100%;
+  }
+}

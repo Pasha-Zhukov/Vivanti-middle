@@ -105,7 +105,7 @@ export default function Methodology() {
           </tbody>
         </table>
       </div>
-      <div className="d-flex justify-content-between flex-column flex-lg-row gap-4 mt-4 p-3 p-lg-0">
+      <div className="d-flex justify-content-between flex-column flex-lg-row gap-4 mt-lg-4 p-3 p-lg-0">
         <div className="d-flex flex-column gap-3 justify-content-between ">
           <div className="d-flex align-items-start flex-column flex-lg-row gap-3">
             <div className="d-flex align-items-center flex-column ">
