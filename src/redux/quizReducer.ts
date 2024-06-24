@@ -30,7 +30,7 @@ export const quizSlice = createSlice({
     resetScore: (state) => {
       state.currentQuestionIndex = 0;
     },
-    questionOne: (state: any, action) => {
+    answerQuestionOne: (state: any, action) => {
       const answer = action.payload;
       if (answer < 45) {
         state.questions[state.currentQuestionIndex].score = 0;
@@ -42,7 +42,7 @@ export const quizSlice = createSlice({
         state.questions[state.currentQuestionIndex].score = 4;
       }
     },
-    questionTwo: (state: any, action) => {
+    answerQuestionTwo: (state: any, action) => {
       const answer = action.payload;
       if (answer < 25) state.questions[state.currentQuestionIndex].score = 0;
       else if (answer >= 25 && answer < 30)
@@ -50,7 +50,7 @@ export const quizSlice = createSlice({
       else if (answer > 30)
         state.questions[state.currentQuestionIndex].score = 3;
     },
-    questionsOther: (state: any, action) => {
+    answerOtherQuestions: (state: any, action) => {
       state.questions[state.currentQuestionIndex].score = action.payload.value
         ? +action.payload.value
         : +action.payload;
@@ -64,9 +64,9 @@ export const {
   resetScore,
   startAnswering,
   showMethodology,
-  questionOne,
-  questionTwo,
-  questionsOther,
+  answerQuestionOne,
+  answerQuestionTwo,
+  answerOtherQuestions,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

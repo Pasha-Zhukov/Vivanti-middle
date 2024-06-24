@@ -36,11 +36,13 @@ const QuestionEight = lazy(
 const Result = lazy(() => import("../components/questionsComponents/Result"));
 
 const Question = () => {
-  const dispatch = useDispatch();
+  
   const currentQuestionIndex = useSelector(
     (state: { quiz: { currentQuestionIndex: number } }) =>
       state.quiz.currentQuestionIndex
   );
+  
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     dispatch(nextQuestion());

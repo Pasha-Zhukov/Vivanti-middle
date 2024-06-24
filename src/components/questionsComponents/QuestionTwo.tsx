@@ -1,14 +1,14 @@
-import img3 from "../../../public/images/img-3.svg";
 import { ChangeEvent, useState } from "react";
+import { nextQuestion, answerQuestionTwo } from "../../redux/quizReducer";
+import { useDispatch } from "react-redux";
+
+import img3 from "../../../public/images/img-3.svg";
 import ButtonPrev from "../buttons/ButtonPrev";
 import ButtonNext from "../buttons/ButtonNext";
-import { nextQuestion, questionTwo } from "../../redux/quizReducer";
-import { useDispatch } from "react-redux";
 
 export default function QuestionTwo() {
   const [input, setInput] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const dispatch = useDispatch();
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -20,9 +20,11 @@ export default function QuestionTwo() {
     }
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (input) {
-      dispatch(questionTwo(input));
+      dispatch(answerQuestionTwo(input));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setInput("");

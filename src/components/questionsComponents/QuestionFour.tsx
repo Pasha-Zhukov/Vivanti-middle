@@ -1,20 +1,17 @@
+import { OptionType, SelectedOptionType } from "./Question.types";
+import { useState } from "react";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
+import { useDispatch } from "react-redux";
 
 import img5 from "../../../public/images/img-5.svg";
 import Select from "react-select";
-import { SelectedOptionType } from "./Question.types";
-import { OptionType } from "../../question/Questions.types";
-import { useState } from "react";
 import ButtonPrev from "../buttons/ButtonPrev";
 import ButtonNext from "../buttons/ButtonNext";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
-import { useDispatch } from "react-redux";
 
 export default function QuestionFour() {
   const [isValid, setIsValid] = useState(true);
   const [selectedOption, setSelectedOption] =
     useState<SelectedOptionType | null>(null);
-
-  const dispatch = useDispatch();
 
   const customStyles = {
     option: (provided: any) => ({
@@ -81,9 +78,11 @@ export default function QuestionFour() {
     setIsValid(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (selectedOption) {
-      dispatch(questionsOther(selectedOption));
+      dispatch(answerOtherQuestions(selectedOption));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOption(null);
@@ -112,11 +111,7 @@ export default function QuestionFour() {
             <ButtonNext onClick={handleNext} answer={selectedOption} />
           </div>
         </div>
-        <img
-          className="img-question"
-          src={img5}
-          alt="img"
-        />
+        <img className="img-question" src={img5} alt="img" />
       </div>
     </div>
   );

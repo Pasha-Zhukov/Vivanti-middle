@@ -1,9 +1,10 @@
-import img4 from "../../../public/images/img-4.svg";
 import { useDispatch } from "react-redux";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
+import { useState, ChangeEvent } from "react";
+
+import img4 from "../../../public/images/img-4.svg";
 import ButtonNext from "../buttons/ButtonNext";
 import ButtonPrev from "../buttons/ButtonPrev";
-import { useState, ChangeEvent } from "react";
 
 export default function QuestionThree() {
   const [selectedOptionMan, setSelectedOptionMan] = useState<string | null>(
@@ -12,10 +13,7 @@ export default function QuestionThree() {
   const [selectedOptionWoman, setSelectedOptionWoman] = useState<string | null>(
     null
   );
-
   const [isValid, setIsValid] = useState(true);
-
-  const dispatch = useDispatch();
 
   const handleChangeMan = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOptionWoman(null);
@@ -29,9 +27,11 @@ export default function QuestionThree() {
     setIsValid(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (selectedOptionMan || selectedOptionWoman) {
-      dispatch(questionsOther(selectedOptionMan || selectedOptionWoman));
+      dispatch(answerOtherQuestions(selectedOptionMan || selectedOptionWoman));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOptionMan("");

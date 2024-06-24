@@ -1,9 +1,6 @@
 import React from "react";
 
-type ButtonNextProps = {
-  onClick: () => void;
-  answer: any;
-};
+import { ButtonNextProps } from "./Button.types";
 
 const ButtonNext: React.FC<ButtonNextProps> = ({ onClick, answer }) => {
   return (

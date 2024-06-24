@@ -17,8 +17,8 @@ export default function Methodology() {
 
   return (
     <>
-      <div className="d-flex justify-content-center">
-        <table className="table w-75 ">
+      <div className="d-flex justify-content-center p-2">
+        <table className="table w-100 ">
           <thead>
             <tr className="text-center border-table-body text-white  fs-18">
               <th

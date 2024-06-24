@@ -1,14 +1,13 @@
-import img9 from "../../../public/images/img-9.svg";
 import { useDispatch } from "react-redux";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
-import ButtonNext from "../buttons/ButtonNext";
-import ButtonPrev from "../buttons/ButtonPrev";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
 import { ChangeEvent, useState } from "react";
 
+import img9 from "../../../public/images/img-9.svg";
+import ButtonNext from "../buttons/ButtonNext";
+import ButtonPrev from "../buttons/ButtonPrev";
 export default function QuestionEight() {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isValid, setIsValid] = useState(true);
-  const dispatch = useDispatch();
 
   const handleSelectionChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
@@ -40,9 +39,11 @@ export default function QuestionEight() {
     if (selection.includes("5")) return "5";
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (selectedOptions) {
-      dispatch(questionsOther(calculateScore(selectedOptions)));
+      dispatch(answerOtherQuestions(calculateScore(selectedOptions)));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOptions([]);

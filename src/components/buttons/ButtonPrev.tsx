@@ -1,5 +1,4 @@
 import { memo } from "react";
-
 import { useDispatch } from "react-redux";
 import { previousQuestion } from "../../redux/quizReducer";
 

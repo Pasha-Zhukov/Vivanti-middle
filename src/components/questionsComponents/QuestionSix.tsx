@@ -1,23 +1,25 @@
-import img7 from "../../../public/images/img-7.svg";
 import { useDispatch } from "react-redux";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
+import { ChangeEvent, useState } from "react";
+
+import img7 from "../../../public/images/img-7.svg";
 import ButtonNext from "../buttons/ButtonNext";
 import ButtonPrev from "../buttons/ButtonPrev";
-import { ChangeEvent, useState } from "react";
 
 export default function QuestionSix() {
   const [isValid, setIsValid] = useState(true);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
     setIsValid(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (selectedOption) {
-      dispatch(questionsOther(selectedOption));
+      dispatch(answerOtherQuestions(selectedOption));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOption(null);

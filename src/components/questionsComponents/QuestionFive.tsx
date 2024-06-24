@@ -1,23 +1,24 @@
-import img6 from "../../../public/images/img-6.svg";
 import { ChangeEvent, useState } from "react";
-import ButtonPrev from "../buttons/ButtonPrev";
-import ButtonNext from "../buttons/ButtonNext";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
 import { useDispatch } from "react-redux";
 
+import img6 from "../../../public/images/img-6.svg";
+import ButtonPrev from "../buttons/ButtonPrev";
+import ButtonNext from "../buttons/ButtonNext";
 export default function QuestionFive() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isValid, setIsValid] = useState(true);
-  const dispatch = useDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
     setIsValid(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleNext = () => {
     if (selectedOption) {
-      dispatch(questionsOther(selectedOption));
+      dispatch(answerOtherQuestions(selectedOption));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOption(null);

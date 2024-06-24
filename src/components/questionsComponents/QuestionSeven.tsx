@@ -1,24 +1,24 @@
-import img8 from "../../../public/images/img-8.svg";
 import { ChangeEvent, useState } from "react";
-import ButtonPrev from "../buttons/ButtonPrev";
-import ButtonNext from "../buttons/ButtonNext";
-import { nextQuestion, questionsOther } from "../../redux/quizReducer";
+import { nextQuestion, answerOtherQuestions } from "../../redux/quizReducer";
 import { useDispatch } from "react-redux";
 
+import img8 from "../../../public/images/img-8.svg";
+import ButtonPrev from "../buttons/ButtonPrev";
+import ButtonNext from "../buttons/ButtonNext";
 export default function QuestionSeven() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const dispatch = useDispatch();
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
     setIsValid(true);
   };
 
-  const [isValid, setIsValid] = useState(true);
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     if (selectedOption) {
-      dispatch(questionsOther(selectedOption));
+      dispatch(answerOtherQuestions(selectedOption));
       dispatch(nextQuestion());
     } else setIsValid(false);
     setSelectedOption(null);
@@ -69,11 +69,7 @@ export default function QuestionSeven() {
             <ButtonNext onClick={handleNext} answer={selectedOption} />
           </div>
         </div>
-        <img
-          className="img-question"
-          src={img8}
-          alt="img"
-        />
+        <img className="img-question" src={img8} alt="img" />
       </div>
     </div>
   );
